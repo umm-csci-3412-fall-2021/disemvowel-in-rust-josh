@@ -18,7 +18,7 @@ fn main() {
     //TODO: Panic if not enough arguments are provided
     //Panic should output the string "Not enough arguments"
 
-    if args.len() < 2 {
+    if args.len() < 3 {
         panic!("Not enough arguments");
     }
 
@@ -37,7 +37,8 @@ fn main() {
 
     // Use command-line arguments for the name of the file,
     // and s_disemvowel for the text to wriite out.
-    write_file(Path::new("dummy.txt"), "output string");
+
+    write_file(Path::new(&args[2]), &s_disemvowel);
 }
 
 fn read_file(path: &Path) -> String {
@@ -49,7 +50,24 @@ fn write_file(path: &Path, s: &str) {
 
 //TODO: Return the input string without vowels.
 fn disemvowel(s: &str) -> String {
-    String::from(s)
+    let mut disemvoweled_string = String::from("");
+    for c in s.chars() {
+        if !check_vowel(&c) {
+            disemvoweled_string.push(c);
+        }
+    }
+    disemvoweled_string
+}
+
+fn check_vowel(c: &char) -> bool {
+    if *c == 'A' || *c == 'E' || *c == 'I' || *c == 'O' || *c == 'U' {
+        return true
+    }
+
+    if *c == 'a' || *c == 'e' || *c == 'i' || *c == 'o' || *c == 'u'{
+        return true
+    }
+    false
 }
 
 // Everything from here down is Rust test code. You shouldn't need to
