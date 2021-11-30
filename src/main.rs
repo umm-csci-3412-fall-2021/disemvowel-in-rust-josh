@@ -18,6 +18,10 @@ fn main() {
     //TODO: Panic if not enough arguments are provided
     //Panic should output the string "Not enough arguments"
 
+    if args.len() < 2 {
+        panic!("Not enough arguments");
+    }
+
     //TODO:
     //  * Pass an argument to read_file to read the original text
     //  * Pass that to disemvowel to remove the vowels
